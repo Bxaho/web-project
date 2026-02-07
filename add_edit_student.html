@@ -1,0 +1,19 @@
+<form method="POST">
+    {% csrf_token %}
+    <label>Name:</label>
+    <input type="text" name="name" value="{{ student.name|default:'' }}" required><br>
+    <label>Roll No:</label>
+    <input type="number" name="rollno" value="{{ student.rollno|default:'' }}" required><br>
+    <label>Email:</label>
+    <input type="email" name="email" value="{{ student.email|default:'' }}"><br>
+    <label>Contact:</label>
+    <input type="text" name="contact" value="{{ student.contact|default:'' }}"><br>
+    <label>Faculty:</label>
+    <select name="faculty" required>
+        <option value="Science and Technology" {% if student.faculty == 'Science and Technology' %}selected{% endif %}>Science and Technology</option>
+        <option value="Management" {% if student.faculty == 'Management' %}selected{% endif %}>Management</option>
+        <option value="Humanities" {% if student.faculty == 'Humanities' %}selected{% endif %}>Humanities</option>
+        <option value="Education" {% if student.faculty == 'Education' %}selected{% endif %}>Education</option>
+    </select><br>
+    <button type="submit">{% if student %}Update{% else %}Add{% endif %}</button>
+</form>
